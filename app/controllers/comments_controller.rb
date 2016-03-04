@@ -1,4 +1,7 @@
 class CommentsController < ApplicationController
+	
+	
+
 	def create
 		@order = Order.find(params[:order_id]) 
 		@comment = @order.comments.create(params[:comment].permit(:menu_id, :price, :qty))
