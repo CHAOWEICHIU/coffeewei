@@ -1,0 +1,8 @@
+<%= form_for([@order, @order.comments.build]) do |s| %>
+	 <p>
+	 	<%= collection_select( :comment, :menu_id, Menu.all, :id, :name) %>
+	 	<%= s.label :qty %>
+	 	<%= s.text_field :qty %>&nbsp&nbsp
+	 	<%= s.submit %>
+	 </p>
+<% end %>

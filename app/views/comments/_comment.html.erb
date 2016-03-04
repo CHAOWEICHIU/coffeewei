@@ -1,0 +1,41 @@
+<table style="width:100%">
+	<thead>
+		<tr>
+			<td>Name</td>
+			<td>List Price</td>
+			<td>Qty</td>
+			<td>Action</td>
+		</tr>
+	</thead>
+	
+	<tbody>
+		
+		<% @order.comments.each do |ss| %>
+		<% id = ss.menu_id %>
+		<% name = Menu.find(id).name %>
+		<% price = Menu.find(id).price %>
+		<% qty = ss.qty %>
+		<tr>
+			<td><%= name %></td>
+			<td><%= price %></td>
+			<td><%= qty %></td>
+			<td><%= link_to 'Delete', [ss.order, ss], method: :delete %></td>
+		</tr>
+		<% end %>
+	</tbody>
+
+</table>
+
+<hr>
+<div>
+	<% count_total = 0 %>
+	<% @order.comments.each do |count| %>
+		<% id = count.menu_id %>
+		<% price = Menu.find(id).price %>
+		<% qty = count.qty %>
+		<% count_total = count_total + price * qty %>
+	<% end %>
+	<h3 align="center">Total: <%= count_total %></h3> 
+	<br>
+</div>
+

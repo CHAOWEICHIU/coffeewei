@@ -1,0 +1,28 @@
+
+
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Cusomter:</strong>
+  <%= @order.cusomter_id %>
+</p>
+
+<div>
+	<h2>Sum</h2>
+	<p><%= render "comments/comment" %></p>
+</div>
+
+<hr>
+
+<div>
+	<h2>Input</h2>
+	<p><%= render "comments/form" %></p>
+</div>
+
+<hr>
+<div align="center">
+	<p><%= link_to 'Back', orders_path %></p>
+	<p><%= button_to 'Delete', @order, method: :delete, data: { confirm: 'Are you sure?' } %></p>
+</div>
+
+
