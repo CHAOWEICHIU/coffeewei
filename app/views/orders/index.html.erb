@@ -1,25 +1,34 @@
 <p id="notice"><%= notice %></p>
 
-<h1>Listing Orders</h1>
+<div class="jumbotron">
+  <h1 class="text-center">Oder List</h1>
+  <p class="lead">The reason that you want to use this system to order something is because it is much easier to keep tract of your current orders.</p>
+  <br>
+  <h1 class="text-center">
+    <%= link_to 'Create Order now', new_order_path, class: "btn btn-lg btn-success" %>
+  </h1>
+</div>
 
-<table>
-  <thead>
-    <tr>
-      <th>Cusomter</th>
-      <th>Action</th>
-    </tr>
-  </thead>
+<div class="jumbotron">
+  <div class="container">
+    <table class="table table-striped">
+      <thead>
+        <tr>
+          <th><p class="text-center">Cusomter_ID</p></th>
+          <th><p class="text-center">Action</p></th>
+        </tr>
+      </thead>
 
-  <tbody>
-    <% @orders.each do |order| %>
-      <tr>
-        <td><%= order.cusomter_id %></td>
-        <td><%= link_to 'Show', order %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
+      <tbody>
+        <% @orders.each do |order| %>
+          <tr class="text-center">
+            <td><p class="btn btn-info disabled"><%= order.cusomter_id %></p></td>
+            <td><%= link_to 'Edit Me', order_path(order), class: "btn btn-warning" %></td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>    
+  </div>
+</div>
 
-<br>
 
-<%= link_to 'New Order', new_order_path %>

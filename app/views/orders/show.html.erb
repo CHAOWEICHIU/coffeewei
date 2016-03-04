@@ -1,28 +1,28 @@
-
-
 <p id="notice"><%= notice %></p>
 
-<p>
-  <strong>Cusomter:</strong>
-  <%= @order.cusomter_id %>
-</p>
-
-<div>
-	<h2>Sum</h2>
-	<p><%= render "comments/comment" %></p>
+<div class="jumbotron">
+	<h1 class="text-center">Hello my friend <%= @order.cusomter_id %></h1>
+	<p class="text-center">What would you like to order today?</p>
 </div>
 
-<hr>
-
-<div>
-	<h2>Input</h2>
-	<p><%= render "comments/form" %></p>
+<div class="jumbotron">
+	<div class="container">
+		<%= render "comments/comment" %>
+		<br>
+		<br>
+		<br>
+		<div class="container">
+			<div class="container">
+				<%= render "comments/form" %>
+			</div>
+		</div>		
+	</div>
 </div>
 
-<hr>
+
 <div align="center">
-	<p><%= link_to 'Back', orders_path %></p>
-	<p><%= button_to 'Delete', @order, method: :delete, data: { confirm: 'Are you sure?' } %></p>
+	<p><%= link_to 'Go Back', orders_path, class: "btn btn-lg btn-default" %></p>
+	<p><%= button_to 'Destroy This Order', @order, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-lg btn-danger" %></p>
 </div>
 
 

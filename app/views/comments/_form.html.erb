@@ -1,8 +1,7 @@
 <%= form_for([@order, @order.comments.build]) do |s| %>
-	 <p>
-	 	<%= collection_select( :comment, :menu_id, Menu.all, :id, :name) %>
-	 	<%= s.label :qty %>
-	 	<%= s.text_field :qty %>&nbsp&nbsp
-	 	<%= s.submit %>
-	 </p>
+	 
+	 	<%= collection_select( :comment, :menu_id, Menu.all, :id, :name, {prompt: "Select a item"}, {class: "form-control"} ) %>
+	 	<%= s.text_field :qty, placeholder: "How many do you want?", class: "form-control" %>
+	 	<p class="text-center"><%= s.submit "Add Item", class: "btn btn-lg btn-success" %></p>
+	 	
 <% end %>

@@ -1,9 +1,10 @@
-<table style="width:100%">
+<table class="table table-striped">
 	<thead>
-		<tr>
+		<tr class="text-center">
 			<td>Name</td>
 			<td>List Price</td>
 			<td>Qty</td>
+			<td>Sub Total</td>
 			<td>Action</td>
 		</tr>
 	</thead>
@@ -15,27 +16,25 @@
 		<% name = Menu.find(id).name %>
 		<% price = Menu.find(id).price %>
 		<% qty = ss.qty %>
-		<tr>
+		<% sub_total = price * qty %>
+		<tr class="text-center">
 			<td><%= name %></td>
-			<td><%= price %></td>
+			<td><%= number_to_currency(price) %></td>
 			<td><%= qty %></td>
-			<td><%= link_to 'Delete', [ss.order, ss], method: :delete %></td>
+			<td><%= number_to_currency(sub_total) %></td>
+			<td><%= link_to 'Delete', [ss.order, ss], method: :delete, class: "btn btn-xs btn-danger" %></td>
 		</tr>
 		<% end %>
 	</tbody>
-
 </table>
 
-<hr>
-<div>
-	<% count_total = 0 %>
+<% count_total = 0 %>
 	<% @order.comments.each do |count| %>
 		<% id = count.menu_id %>
 		<% price = Menu.find(id).price %>
 		<% qty = count.qty %>
 		<% count_total = count_total + price * qty %>
-	<% end %>
-	<h3 align="center">Total: <%= count_total %></h3> 
-	<br>
-</div>
+<% end %>
+
+<p class="btn-default btn-sm text-center">Total: <%= number_to_currency(count_total) %></p>
 
