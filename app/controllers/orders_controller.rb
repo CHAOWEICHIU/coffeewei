@@ -1,4 +1,5 @@
 class OrdersController < ApplicationController
+  before_action :authenticate_user!
   before_action :set_order, only: [:show, :edit, :update, :destroy]
 
   # GET /orders
@@ -16,7 +17,7 @@ class OrdersController < ApplicationController
 
   # GET /orders/new
   def new
-    @order = Order.new
+    @order = current_user.orders.build
   end
 
   # GET /orders/1/edit
@@ -26,7 +27,7 @@ class OrdersController < ApplicationController
   # POST /orders
   # POST /orders.json
   def create
-    @order = Order.new(order_params)
+    @order = current_user.orders.build(order_params)
 
     respond_to do |format|
       if @order.save
@@ -45,10 +46,8 @@ class OrdersController < ApplicationController
     respond_to do |format|
       if @order.update(order_params)
         format.html { redirect_to @order, notice: 'Order was successfully updated.' }
-        format.json { render :show, status: :ok, location: @order }
       else
         format.html { render :edit }
-        format.json { render json: @order.errors, status: :unprocessable_entity }
       end
     end
   end
@@ -68,6 +67,6 @@ class OrdersController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def order_params
-      params.require(:order).permit(:cusomter_id)
+      params.require(:order).permit(:user_id)
     end
 end
