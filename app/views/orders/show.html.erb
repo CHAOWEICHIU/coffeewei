@@ -1,11 +1,9 @@
 <p id="notice"><%= notice %></p>
-
 <div class="jumbotron">
-	<h1 class="text-center">Hello my friend <%= @order.cusomter_id %></h1>
-	<p class="text-center">What would you like to order today?</p>
-</div>
+	<h3 class="text-center">Hello, <%= User.find(@order.user_id).name %></h3>
+	<h5 class="text-center">What would you like to order today?</h5>
+	<hr>
 
-<div class="jumbotron">
 	<div class="container">
 		<%= render "comments/comment" %>
 		<br>
@@ -19,10 +17,15 @@
 	</div>
 </div>
 
-
+	
 <div align="center">
-	<p><%= link_to 'Go Back', orders_path, class: "btn btn-lg btn-default" %></p>
-	<p><%= button_to 'Destroy This Order', @order, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-lg btn-danger" %></p>
+	<% visibility = current_user.visibility %>
+	<% case visibility %>
+		<% when 1 %>
+			<p><%= render 'orders/level_for_user' %></p>
+		<% else %>
+			<p><%= render 'orders/level_for_owner' %></p>
+	<% end %>
+	<p><%= button_to 'Cancel This Order', @order, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-lg btn-danger" %></p>
 </div>
-
 

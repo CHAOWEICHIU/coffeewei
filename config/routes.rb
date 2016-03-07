@@ -4,7 +4,14 @@ Rails.application.routes.draw do
   devise_for :users, controllers: { registrations: "registrations"}
   resources :menus
     
-  resources :orders do 
+  resources :orders do
+    member do
+      get 'levelup'
+      put 'levelup'
+      get 'leveldown'
+      put 'leveldown'
+    end
+    
     resources :comments
   end
   # The priority is based upon order of creation: first created -> highest priority.

@@ -1,0 +1,5 @@
+<% @order_v = Order.find(params[:id]).visibility %>
+<% case @order_v %>
+	<% when 0 %>
+		<%= link_to 'Place Order', levelup_order_path(@order), data: { confirm: 'Are you sure?' }, class: "btn btn-lg btn-success" %>
+<% end %>

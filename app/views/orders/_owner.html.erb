@@ -1,0 +1,33 @@
+<div class="jumbotron">
+  <div class="container">
+    <table class="table table-striped">
+      <thead>
+        <tr>
+          <th><p class="text-center">Clien Name</p></th>
+          <th><p class="text-center">Order Status</p></th>
+          <th><p class="text-center">Updated at</p></th>
+        </tr>
+      </thead>
+
+      <tbody>
+        <% @orders_user = Order.all.sort{|a,b| a.visibility <=> b.visibility} %>
+        <% @orders_user.each do |order| %>
+        <tr class="text-center">
+          <td><%= User.find(order.user_id).name %></td>
+          <% case order.visibility %>
+            <% when 1 %>
+              <td><%= link_to 'Unread Order', order_path(order), class: "btn btn-warning" %></td>
+            <% when 2 %>
+              <td><%= link_to 'Ongoing Order', order_path(order), class: "btn btn-success" %></td>
+            <% when 3 %>
+              <td><%= link_to 'Shipped', order_path(order), class: "btn btn-success" %></td>
+          <% end %>
+          <td><%= time_ago_in_words(order.updated_at) %> ago </td>
+        </tr>
+
+
+        <% end %>
+      </tbody>
+    </table>    
+  </div>
+</div>

@@ -28,8 +28,12 @@
   <p>Hello, <%= current_user.name %> <%= link_to "Sign_out", destroy_user_session_path, :method => 'delete' %> </p>
   <% end %>
 
+
+
 	<div class="container">
-		<%= yield %>
+		
+    <%= render 'layouts/header' %>
+    <%= yield %>
 	</div>
 
 

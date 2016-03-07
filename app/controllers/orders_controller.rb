@@ -8,6 +8,20 @@ class OrdersController < ApplicationController
     @orders = Order.all
   end
 
+  def levelup
+    @order = Order.find(params[:id])
+    @order.visibility += 1
+    @order.save
+    redirect_to orders_path
+  end
+
+  def leveldown
+    @order = Order.find(params[:id])
+    @order.visibility -= 1
+    @order.save
+    redirect_to orders_path
+  end
+  
   # GET /orders/1
   # GET /orders/1.json
   def show
@@ -18,6 +32,8 @@ class OrdersController < ApplicationController
   # GET /orders/new
   def new
     @order = current_user.orders.build
+    @order = Order.find(params[:id])
+    redirect_to @order
   end
 
   # GET /orders/1/edit
@@ -27,15 +43,13 @@ class OrdersController < ApplicationController
   # POST /orders
   # POST /orders.json
   def create
-    @order = current_user.orders.build(order_params)
+    @order = current_user.orders.build
 
     respond_to do |format|
       if @order.save
         format.html { redirect_to @order, notice: 'Order was successfully created.' }
-        format.json { render :show, status: :created, location: @order }
       else
         format.html { render :new }
-        format.json { render json: @order.errors, status: :unprocessable_entity }
       end
     end
   end

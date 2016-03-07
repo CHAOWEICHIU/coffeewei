@@ -5,30 +5,27 @@
   <p class="lead">The reason that you want to use this system to order something is because it is much easier to keep tract of your current orders.</p>
   <br>
   <h1 class="text-center">
-    <%= link_to 'Create Order now', new_order_path, class: "btn btn-lg btn-success" %>
+    <%= form_for([@order, current_user.orders.build]) do |s| %>
+      <%= s.submit "Create New Order", class: "btn btn-lg btn-success" %>
+    <% end %>
   </h1>
 </div>
 
-<div class="jumbotron">
-  <div class="container">
-    <table class="table table-striped">
-      <thead>
-        <tr>
-          <th><p class="text-center">Cusomter_ID</p></th>
-          <th><p class="text-center">Action</p></th>
-        </tr>
-      </thead>
 
-      <tbody>
-        <% @orders.each do |order| %>
-          <tr class="text-center">
-            <td><p class="btn btn-info disabled"><%= order.cusomter_id %></p></td>
-            <td><%= link_to 'Edit Me', order_path(order), class: "btn btn-warning" %></td>
-          </tr>
-        <% end %>
-      </tbody>
-    </table>    
-  </div>
-</div>
+<% visibility = current_user.visibility %>
+<% case visibility %>
+	<% when 1 %>
+		<%= render "orders/user" %>
+	<% when 2 %>
+		<%= render "orders/owner" %>
+	<% when 3 %>
+		<div>Owner View</div>
+		<%= render "orders/owner" %>
+		<div>User View</div>
+		<%= render "orders/user" %>
+<% else %>
+
+<% end %>
+
 
 

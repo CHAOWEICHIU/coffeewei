@@ -6,7 +6,7 @@ class CreateOrders < ActiveRecord::Migration
 
       #Status: unread, process, shipped
       t.string :status, default: "unread"
-      t.integer :visibility, default: 1
+      t.integer :visibility, default: 0
       t.timestamps null: false
     end
     add_index("orders", "user_id")
