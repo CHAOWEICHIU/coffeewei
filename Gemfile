@@ -3,7 +3,7 @@ source 'https://rubygems.org'
 gem 'devise'
 gem 'rails', '4.2.5.1'
 gem 'mysql2', group: :development
-gem 'pg',  group: :production
+gem 'pg', '0.18.1', group: :production
 gem 'rails_12factor', group: :production
 
 gem 'sass-rails', '~> 5.0'
