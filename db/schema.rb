@@ -35,12 +35,10 @@ ActiveRecord::Schema.define(version: 20160305133711) do
   add_index "menus", ["comment_id"], name: "index_menus_on_comment_id", using: :btree
 
   create_table "orders", force: :cascade do |t|
-    t.integer  "cusomter_id", limit: 4
-    t.integer  "user_id",     limit: 4
-    t.string   "status",      limit: 255, default: "unread"
-    t.integer  "visibility",  limit: 4,   default: 0
-    t.datetime "created_at",                                 null: false
-    t.datetime "updated_at",                                 null: false
+    t.integer  "user_id",    limit: 4
+    t.integer  "visibility", limit: 4, default: 0
+    t.datetime "created_at",                       null: false
+    t.datetime "updated_at",                       null: false
   end
 
   add_index "orders", ["user_id"], name: "index_orders_on_user_id", using: :btree

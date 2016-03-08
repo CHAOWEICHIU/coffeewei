@@ -1,0 +1,39 @@
+<div class="container">
+	<!-- <div class="jumbotron">	</div> -->
+	<br><br><br><br>
+	
+	<div>
+
+
+		<% @users.each do |user| %>
+			<% user_name = user.name %>
+			<% user_id = user.id %>
+			<% orders = Order.where(:user_id => user_id) %>
+			<% orders_count = orders.count %>
+			<p><%= user_name %></p>
+			<% if orders_count == 0 %>
+				<p>There is no order for user <%= user_name %></p>
+			<% else %>
+				<% user_total_count = 0 %>
+				<% orders.each do |order| %>
+					<% order_id = order.id %>
+					<% comments = Comment.where(:order_id => order_id) %>
+					<% order_total_count = 0 %>
+					<% comments.each do |comment| %>
+						<% menu_id = comment.menu_id %>
+						<% comment_qty = comment.qty %>
+						<% menu_id_price = Menu.find(menu_id).price %>
+						<% order_total_count = order_total_count + (comment_qty * menu_id_price) %>
+					<% end %>
+					<% user_total_count = user_total_count + order_total_count %>
+				<% end %>
+				<p>This user total is <%= user_total_count %></p>
+			<% end %>
+			<br>
+		<% end %>
+
+
+
+
+	</div>
+</div>

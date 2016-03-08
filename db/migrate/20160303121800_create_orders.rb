@@ -1,11 +1,7 @@
 class CreateOrders < ActiveRecord::Migration
   def change
     create_table :orders do |t|
-      t.integer :cusomter_id
       t.integer :user_id
-
-      #Status: unread, process, shipped
-      t.string :status, default: "unread"
       t.integer :visibility, default: 0
       t.timestamps null: false
     end
