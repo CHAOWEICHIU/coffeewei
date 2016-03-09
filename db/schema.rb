@@ -14,11 +14,11 @@
 ActiveRecord::Schema.define(version: 20160305133711) do
 
   create_table "comments", force: :cascade do |t|
-    t.integer  "qty",        limit: 4, default: 1
+    t.integer  "qty",        limit: 4
     t.integer  "menu_id",    limit: 4
     t.integer  "order_id",   limit: 4
-    t.datetime "created_at",                       null: false
-    t.datetime "updated_at",                       null: false
+    t.datetime "created_at",           null: false
+    t.datetime "updated_at",           null: false
   end
 
   add_index "comments", ["order_id"], name: "index_comments_on_order_id", using: :btree

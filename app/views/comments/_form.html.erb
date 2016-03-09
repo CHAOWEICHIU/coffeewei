@@ -3,5 +3,5 @@
 	 	<%= collection_select( :comment, :menu_id, Menu.all, :id, :name, {prompt: "Select a item"}, {class: "form-control"} ) %>
 	 	<%= s.text_field :qty, placeholder: "How many do you want?", class: "form-control" %>
 	 	<p class="text-center"><%= s.submit "Add Item", class: "btn btn-lg btn-success" %></p>
-	 	
+	 	<p id="notice" class="text-center"><%= notice %></p>
 <% end %>
