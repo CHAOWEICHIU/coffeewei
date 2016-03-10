@@ -1,4 +1,85 @@
-<h1>Reports#show</h1>
-<p>Find me in app/views/reports/show.html.erb</p>
+<div class="jumbotron">
+	<div class="container">
+		<div class="row">
+			<div class="text-center">
+				<img src="https://cdn4.iconfinder.com/data/icons/REALVISTA/education_icons/png/400/graduated.png" class="img-responsive img-thumbnail">
+			</div>
+		</div>
+	</div>
+	<br><br><br>
 
-<%= @try %>
+	<div class="row">		
+		<div class="col-sm-5 col-sm-offset-1" style="height:10em">
+			<button class="btn btn-success btn-block" style="height:8em">Call <%= @user.name %></button>
+		</div>
+		<div class="col-sm-5 " style="height:10em">
+			<button class="btn btn-success btn-block" style="height:8em"><%= @user.email %></button>
+		</div>
+	</div>		
+</div>
+
+<div class="jumbotron">
+	<div class="container">
+		<div class="row">
+			<div class="text-center">
+				<h2>Order</h2>
+				<br>
+				<div class="col-sm-4" style="height:6em">
+					<button type="button" class="btn-danger btn-block" style="height:4em">Unread</button>
+				</div>
+				<div class="col-sm-4" style="height:6em">
+					<button type="button" class="btn-warning btn-block" style="height:4em">Ongoing</button>
+				</div>
+				<div class="col-sm-4" style="height:6em">
+					<button type="button" class="btn-success btn-block" style="height:4em">Shipped</button>
+				</div>
+			</div>
+			<table class="table">
+				<thead>
+					<tr>
+						<th class="text-center">Status</th>
+						<th class="text-center">Value</th>
+						<th class="text-center">Updated at</th>
+						<th class="text-center">ID</th>
+					</tr>
+				</thead>
+				<tbody>
+					<% @orders.each do |o| %>
+					<% v = o.visibility %>
+					<% case v %>
+						<% when 1 %>
+							<tr class="btn-danger">
+								
+								<th class="text-center">Undread</th>
+								<th class="text-center">$<%= @order_total_hash["#{o.id}"] %></th>
+								<th class="text-center"><%= time_ago_in_words(o.updated_at) %> ago</th>
+								<th class="text-center"><%= o.id %></th>
+								
+							</tr>
+							
+						<% when 2 %>
+							<tr class="btn-warning">
+								
+								<th class="text-center">Ongoing</th>
+								<th class="text-center">$<%= @order_total_hash["#{o.id}"] %></th>
+								<th class="text-center"><%= time_ago_in_words(o.updated_at) %> ago</th>
+								<th class="text-center"><%= o.id %></th>
+							</tr>
+						<% when 3 %>
+							<tr class="btn-success">
+								
+								<th class="text-center">Shipped</th>
+								<th class="text-center">$<%= @order_total_hash["#{o.id}"] %></th>
+								<th class="text-center"><%= time_ago_in_words(o.updated_at) %> ago</th>
+								<th class="text-center"><%= o.id %></th>
+							</tr>
+						<% end %>
+					<% end %>
+				</tbody>
+			</table>
+		</div>
+	</div>
+</div>
+
+
+	
