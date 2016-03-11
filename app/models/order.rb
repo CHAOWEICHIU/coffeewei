@@ -1,8 +1,21 @@
 class Order < ActiveRecord::Base
 	has_many :comments, :dependent => :destroy
 	belongs_to :user
+	belongs_to :reports
 	validates_associated :comments
 
-	# scope :recent, -> {order where("orders.created_at > ?", 30.days.ago)}
- #  	scope :limited, -> {limit(5)}
+	def levelup
+		self.visibility += 1
+		self.save
+	end 
+	def leveldown
+		self.visibility -= 1
+		self.save
+	end
+
+	def self.find_menu_price(comment_menu_id)
+		@menus = Menu.all 
+		
+	end
+
 end

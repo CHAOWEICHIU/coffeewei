@@ -1,13 +1,13 @@
 Rails.application.routes.draw do
   
-  resources :reports
+  get '/report' => 'orders#report'
   
 
   root 'home#index'
 
   devise_for :users, controllers: { registrations: "registrations"}
   resources :menus
-    
+   
   resources :orders do
     member do
       get 'levelup'

@@ -5,20 +5,20 @@ class OrdersController < ApplicationController
   # GET /orders
   # GET /orders.json
   def index
-    @orders = Order.all
+    @orders = Order.all.order("visibility ASC")
+
+
   end
 
   def levelup
     @order = Order.find(params[:id])
-    @order.visibility += 1
-    @order.save
+    @order.levelup
     redirect_to orders_path
   end
 
   def leveldown
     @order = Order.find(params[:id])
-    @order.visibility -= 1
-    @order.save
+    @order.leveldown
     redirect_to orders_path
   end
   
@@ -27,6 +27,12 @@ class OrdersController < ApplicationController
   def show
     @order = Order.find(params[:id])
     @comments = @order.comments.all
+  end
+
+  def report
+
+    @menus = Menu.all
+    @comments = Comment.all.where(created_at: Time.new(2016,04)..Time.new(2016,05)) 
   end
 
   # GET /orders/new

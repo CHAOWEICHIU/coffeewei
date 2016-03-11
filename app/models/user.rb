@@ -6,7 +6,7 @@ class User < ActiveRecord::Base
 
   has_many :orders     
 
-
+  
   # scope :recent, -> {order where("orders.created_at > ?", 30.days.ago)}
   # scope :limited, -> {limit(5)}
   

@@ -22,6 +22,13 @@ class ReportsController < ApplicationController
 		end
 		@user_total_count_array << @user_total_count
 	end
+
+
+	@orders = Order.all
+	@comments = Comment.all
+	
+
+	
   end
 
   def show
