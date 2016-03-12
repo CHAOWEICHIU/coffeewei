@@ -1,9 +1,8 @@
 Rails.application.routes.draw do
   
-  # get '/report' => 'orders#report'
-  resources :reports
+  get '/report' => 'orders#report'
 
-  root 'home#index'
+  root 'orders#welcome'
 
   devise_for :users, controllers: { registrations: "registrations"}
   resources :menus

@@ -1,7 +1,11 @@
 class OrdersController < ApplicationController
-  before_action :authenticate_user!
+  before_action :authenticate_user!, except: [:welcome]
   before_action :set_order, only: [:show, :edit, :update, :destroy]
   include ApplicationHelper
+  
+  def welcome
+  end
+
   # GET /orders
   # GET /orders.json
   def index
