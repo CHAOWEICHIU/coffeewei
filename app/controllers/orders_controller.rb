@@ -1,7 +1,7 @@
 class OrdersController < ApplicationController
   before_action :authenticate_user!
   before_action :set_order, only: [:show, :edit, :update, :destroy]
-
+  include ApplicationHelper
   # GET /orders
   # GET /orders.json
   def index
@@ -30,10 +30,19 @@ class OrdersController < ApplicationController
   end
 
   def report
-
-    @menus = Menu.all
-    @comments = Comment.all.where(created_at: Time.new(2016,04)..Time.new(2016,05)) 
+    
+    @sum = 0
+    @orders = start_end(Order, date_start, date_end)
+    @orders.each do |o|
+      o.comments.each do |s|
+        @sum = @sum + s.qty * Menu.find(s.menu_id).price
+      end
+    end
+    @sum
   end
+
+
+
 
   # GET /orders/new
   def new

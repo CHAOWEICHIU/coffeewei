@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
   
-  get '/report' => 'orders#report'
-  
+  # get '/report' => 'orders#report'
+  resources :reports
 
   root 'home#index'
 
